@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/3.4.2/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: sans-serif;
+      }
+
+      #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #012733;
+        color: #b7bb9d;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        text-align: center;
+        padding: 20px;
+
+        /* Animation setup */
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      #overlay.fade-out {
+        opacity: 0;
+        transform: translateY(-50px);
+        pointer-events: none;
+      }
+
+      #overlay h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #b7bb9d;
+      }
+
+      #okButton {
+        padding: 20px 30px;
+        font-size: 24px;
+        background-color: #b7bb9d;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      #okButton:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- AR Scene -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      <a-assets>
+        <a-asset-item id="animated-asset" src="model4.glb"></a-asset-item>
+      </a-assets>
+
+      <a-marker 
+        type="pattern" 
+        url="markerr.patt"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="5">
+        <a-entity
+          scale="1 1 1"
+          animation-mixer="loop: repeat"
+          gltf-model="#animated-asset"
+          position="0 0 0"
+          rotation="0 0 0">
+        </a-entity>
+      </a-marker>
+
+      <a-entity camera="near: 0.1; far: 50"></a-entity>
+    </a-scene>
+
+    <!-- UI Overlay -->
+    <div id="overlay">
+      <h1>Scan het patroon.</h1>
+      <button id="okButton">OK</button>
+    </div>
+
+    <!-- JS to animate overlay -->
+    <script>
+      const overlay = document.getElementById('overlay');
+      const button = document.getElementById('okButton');
+    
+      button.addEventListener('click', () => {
+        // Let the browser apply the style before adding the class
+        requestAnimationFrame(() => {
+          overlay.classList.add('fade-out');
+        });
+    
+        // Hide overlay after animation completes
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 600); // match the CSS transition duration
+      });
+    </script>
+  </body>
+</html>
