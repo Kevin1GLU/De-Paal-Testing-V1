@@ -13,7 +13,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #012733;
+        background-color: #13322e;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -45,73 +45,14 @@
         border-radius: 5px;
         cursor: pointer;
       }
-
-      /* Loading indicator styles */
-      #loadingIndicator {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(1, 39, 51, 0.8);
-        z-index: 9998;
-        justify-content: center;
-        align-items: center;
-        color: #b7bb9d;
-        font-family: Arial, sans-serif;
-        font-size: 20px;
-      }
-      
-      /* Error message styles */
-      #errorMessage {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(139, 0, 0, 0.8);
-        z-index: 9997;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 20px;
-      }
-      
-      #retryButton {
-        background-color: white;
-        border: none;
-        color: #8b0000;
-        padding: 12px 24px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
       
     </style>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- Welcome Screen -->
     <div id="welcomeScreen">
-      <div id="welcomeMessage">Scan de QR-code</div>
+      <div id="welcomeMessage">Scan de QR code</div>
       <button id="startButton">OK</button>
-    </div>
-    
-    <!-- Loading Indicator -->
-    <div id="loadingIndicator">Laden...</div>
-    
-    <!-- Error Message -->
-    <div id="errorMessage">
-      <div>Er is een fout opgetreden. Probeer het opnieuw.</div>
-      <button id="retryButton">Opnieuw proberen</button>
     </div>
     
     <!-- Debug info panel - only shown when needed -->
@@ -121,29 +62,101 @@
     <a-scene id="arScene" embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;" visible="false">
       
       <a-assets>
-        <a-asset-item id="animated-asset" src="model4.glb"></a-asset-item>
+        <a-asset-item id="model_background" src="model_background.glb"></a-asset-item>
+        <a-asset-item id="model_01" src="model_01.glb"></a-asset-item>
         
+        
+        <!-- videos -->
+        <video id="video1" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip3.mp4" type="video/mp4" />
+        </video>
+        
+        <video id="video2" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip_melissa.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Frame images for video borders -->
+        <img id="frame1" src="Asset16_frame.png" crossorigin="anonymous">
+        <img id="frame2" src="Asset16_frame.png" crossorigin="anonymous">
+
       </a-assets>
 
-      <!-- Marker 1 --------------------------------------------------------------------------------------------------------------------------->
+      <!-- Marker 1 Melissa --------------------------------------------------------------------------------------------------------------------------->
       <a-marker type="pattern" url="Marker1.patt"
       
       smooth="true" 
       smoothCount="10" 
       smoothTolerance="0.01" 
-      smoothThreshold="3">
+      smoothThreshold="2">
       
+        <!-- Video container 1 -->
+        <a-entity id="videoContainer1" position="1.3 0.4 0.1" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 1 -->
+          <a-video 
+            src="#video1" 
+            id="videoPlane1"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0.05"
+            material="shader: flat; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 1 -->
+          <a-image 
+            src="#frame1" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
+
+        <!-- Video container 2 -->
+        <a-entity id="videoContainer2" position="-1.5 0.4 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 2 -->
+          <a-video 
+            src="#video2"
+            id="videoPlane2"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0"
+            material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 2 -->
+          <a-image 
+            src="#frame2" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0.05" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
         
-        <!-- Model -->
+        <!-- Model Background -->
         <a-entity
-          scale="0.8 0.8 0.8"
+          id="backgroundModel"
+          scale="0.6 0.6 0.6"
           animation-mixer="loop: repeat"
-          gltf-model="#animated-asset"
+          gltf-model="#model_background"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+
+        <!-- Model  -->
+        <a-entity
+          id="model_01_Melissa"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_01"
           position="0 0 0"
           rotation="0 0 0"
           material="shader: flat; transparent: true; depthWrite: true;">
         </a-entity>
       </a-marker>
+
+
 
       <!-- Marker 2 --------------------------------------------------------------------------------------------------------------------------->
       <a-marker type="pattern" url="Marker2.patt"
@@ -151,30 +164,41 @@
       smooth="true" 
       smoothCount="10" 
       smoothTolerance="0.01" 
-      smoothThreshold="3">
+      smoothThreshold="2">
 
         <!-- Video 1 -->
+        <a-video 
+          src="#video1" 
+          id="videoPlane1"
+          width="1.5" 
+          height="0.818" 
+          position="0.8 0.2 0.5"
+          rotation="-90 0 0"
+          material="shader: flat; transparent: true; alphaTest: 0.01; depthTest: false; opacity: 0;">
+        </a-video>
       </a-marker>
 
 
       <!-- Camera -->
       <a-entity camera></a-entity>
-      <a-entity light="type: ambient; color: #ffffff; intensity: 1"></a-entity>
+      <a-light type="ambient" color="#FFFFFF" intensity="1.2"></a-light>
+
     </a-scene>
 
     <script>
       // Get DOM elements
+
+      const backgroundModel = document.querySelector("#backgroundModel");
+      const model_01_Melissa = document.querySelector("#model_01_Melissa");
+
       const welcomeScreen = document.getElementById('welcomeScreen');
       const startButton = document.getElementById('startButton');
       const arScene = document.getElementById('arScene');
       const debugInfo = document.getElementById('debugInfo');
-      const loadingIndicator = document.getElementById('loadingIndicator');
-      const errorMessage = document.getElementById('errorMessage');
-      const retryButton = document.getElementById('retryButton');
       const video1 = document.querySelector("#video1");
       const video2 = document.querySelector("#video2");
-      const videoPlane1 = document.querySelector("#videoPlane1");
-      const videoPlane2 = document.querySelector("#videoPlane2");
+      const videoContainer1 = document.querySelector("#videoContainer1");
+      const videoContainer2 = document.querySelector("#videoContainer2");
       const marker = document.querySelector("a-marker");
 
       let playTimeout1, playTimeout2;
@@ -195,74 +219,212 @@
         // Hide welcome screen
         welcomeScreen.style.display = 'none';
         
-        // Show loading indicator for a brief moment
-        loadingIndicator.style.display = 'flex';
-        
-        // iOS requires a user gesture to access camera
-        // Start AR immediately for better iOS compatibility
-        initializeAR();
-        
-        // Hide loading after a short delay if it's still showing
-        setTimeout(() => {
-          if (loadingIndicator.style.display === 'flex') {
-            hideLoading();
-          }
-        }, 1500);
-      });
-      
-      // Initialize AR components
-      function initializeAR() {
-        debug('Initializing AR');
-        
         // Show AR scene
         arScene.setAttribute('visible', 'true');
         
+        // Initialize videos
+        initializeVideos();
+      });
+      
+      // Initialize videos
+      function initializeVideos() {
+        debug('Initializing videos');
         
-        // Set a timeout to ensure camera is accessed, but don't show error automatically
-        const cameraTimeout = setTimeout(() => {
-          debug('Camera initialization timeout reached');
-          hideLoading();
-        }, 3000);
+        // Pre-load videos
+        try {
+          video1.load();
+          video2.load();
+        } catch (e) {
+          debug('Error loading videos: ' + e.message);
+        }
         
-        // Listen for scene loaded event
-        arScene.addEventListener('loaded', () => {
-          debug('AR scene loaded');
-          clearTimeout(cameraTimeout);
-          hideLoading();
+        // Try to play and immediately pause to satisfy user interaction requirement
+        Promise.all([
+          video1.play().then(() => video1.pause()).catch(e => debug('Video 1 init failed: ' + e.message)),
+          video2.play().then(() => video2.pause()).catch(e => debug('Video 2 init failed: ' + e.message))
+        ]).then(() => {
+          videosInitialized = true;
+          debug('Videos successfully initialized');
+        }).catch(error => {
+          debug('Could not initialize videos: ' + error.message);
         });
+      }
+      
+      // Animation function to scale up containers
+      function animateScale(element, duration) {
+        const startTime = performance.now();
+        const initialScale = 0;
+        const targetScale = 1;
         
-        // Only listen for explicit camera access denied events
-        document.querySelector('a-entity[camera]').addEventListener('cameraaccessdenied', () => {
-          debug('Camera access denied');
-          showError();
-        });
+        function step(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function for smoother animation (ease-out)
+          const easeProgress = 1 - Math.pow(1 - progress, 2);
+          
+          const currentScale = initialScale + (targetScale - initialScale) * easeProgress;
+          element.setAttribute('scale', `${currentScale} ${currentScale} ${currentScale}`);
+          
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+        
+        requestAnimationFrame(step);
       }
       
-      // Show error message
-      function showError() {
-        hideLoading();
-        errorMessage.style.display = 'flex';
+      // Video play handler functions
+      function playVideo1() {
+        debug('Attempting to play video 1');
+        
+        video1.play()
+          .then(() => {
+            debug('Video 1 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer1, 1000);
+            
+            // Stop video1 after 25 seconds of playing
+            stopTimeout1 = setTimeout(() => {
+              video1.pause();
+              videoContainer1.setAttribute('scale', '0 0 0');
+              video1.currentTime = 0;
+            }, 25000);
+          })
+          .catch(error => {
+            debug('Error playing video 1: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer1, 1000);
+          });
       }
       
-      // Hide loading indicator
-      function hideLoading() {
-        loadingIndicator.style.display = 'none';
+      function playVideo2() {
+        debug('Attempting to play video 2');
+        
+        video2.play()
+          .then(() => {
+            debug('Video 2 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer2, 1000);
+            
+            // Stop video2 after 40 seconds of playing
+            stopTimeout2 = setTimeout(() => {
+              video2.pause();
+              videoContainer2.setAttribute('scale', '0 0 0');
+              video2.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 2: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer2, 1000);
+          });
       }
-      
-      // Retry button handler
-      retryButton.addEventListener('click', () => {
-        window.location.reload();
+
+       // Reset models animation by recreating the animation-mixer component
+       function resetModelAnimations() {
+        debug('Resetting model animations');
+        
+        try {
+          // Force animation restart by changing the models' animation data
+          if (backgroundModel) {
+            // Get the 3D model's animation component
+            const mixer = backgroundModel.components["animation-mixer"];
+            if (mixer && mixer.mixer) {
+              // Access the THREE.js animation mixer directly if possible
+              mixer.mixer.stopAllAction();
+              mixer.mixer.update(0);
+              // Force the component to re-initialize
+              backgroundModel.removeAttribute('animation-mixer');
+              backgroundModel.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+              debug('Background model animation reset');
+            } else {
+              // Fallback for when direct mixer access fails
+              backgroundModel.removeAttribute('animation-mixer');
+              setTimeout(() => {
+                backgroundModel.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+                debug('Background model animation reset (fallback)');
+              }, 50);
+            }
+          }
+          
+          if (model_01_Melissa) {
+            // Get the 3D model's animation component
+            const mixer = model_01_Melissa.components["animation-mixer"];
+            if (mixer && mixer.mixer) {
+              // Access the THREE.js animation mixer directly if possible
+              mixer.mixer.stopAllAction();
+              mixer.mixer.update(0);
+              // Force the component to re-initialize
+              model_01_Melissa.removeAttribute('animation-mixer');
+              model_01_Melissa.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+              debug('Main model animation reset');
+            } else {
+              // Fallback for when direct mixer access fails
+              model_01_Melissa.removeAttribute('animation-mixer');
+              setTimeout(() => {
+                model_01_Melissa.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+                debug('Main model animation reset (fallback)');
+              }, 50);
+            }
+          }
+        } catch (e) {
+          debug('Error resetting model animations: ' + e.message);
+        }
+      }
+
+      // Reset all videos and timers
+      function resetVideos() {
+        debug('Resetting videos');
+        
+        // Clear all timeouts
+        clearTimeout(playTimeout1);
+        clearTimeout(playTimeout2);
+        clearTimeout(stopTimeout1);
+        clearTimeout(stopTimeout2);
+
+        // Reset video containers to minimum scale
+        videoContainer1.setAttribute('scale', '0 0 0');
+        videoContainer2.setAttribute('scale', '0 0 0');
+
+        // Reset videos
+        try {
+          video1.pause();
+          video2.pause();
+          video1.currentTime = 0;
+          video2.currentTime = 0;
+        } catch (e) {
+          debug('Error in reset: ' + e.message);
+        }
+      }
+
+      marker.addEventListener("markerFound", () => {
+        debug('Marker found');
+        
+        resetModelAnimations();
+
+        // Reset everything first to handle reconnection properly
+        resetVideos();
+        
+        // Delay video1 by 5 seconds
+        playTimeout1 = setTimeout(playVideo1, 5000);
+
+        // Delay video2 by 2 seconds
+        playTimeout2 = setTimeout(playVideo2, 2000);
       });
 
-      // Only handle critical camera errors
-      window.addEventListener('error', function(event) {
-        if (event.message && 
-            event.message.includes('getUserMedia') && 
-            event.message.includes('NotAllowedError')) {
-          debug('Camera permission denied error detected');
-          showError();
-        }
+      marker.addEventListener("markerLost", () => {
+        debug('Marker lost');
+        resetVideos();
       });
+      
+      // Extra event to help with iOS video playback
+      document.addEventListener('touchstart', function() {
+        if (!videosInitialized) {
+          debug('Touch event - trying to initialize videos again');
+          initializeVideos();
+        }
+      }, {once: true});
     </script>
   </body>
 </html>
