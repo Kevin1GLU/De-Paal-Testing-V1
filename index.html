@@ -13,7 +13,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #13322e;
+        background-color: #1c3301;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -65,11 +65,15 @@
         <a-asset-item id="model_background" src="model_background.glb"></a-asset-item>
         <a-asset-item id="model_01" src="model_01.glb"></a-asset-item>
         <a-asset-item id="model_02" src="model_02.glb"></a-asset-item>
+        <a-asset-item id="model_03" src="model_03.glb"></a-asset-item>
+        <a-asset-item id="model_04" src="model_04.glb"></a-asset-item>
+        <a-asset-item id="model_05" src="model_05.glb"></a-asset-item>
+        <a-asset-item id="model_06" src="model_06.glb"></a-asset-item>
         
         
         <!-- videos -->
         <video id="video1" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
-          <source src="clip3.mp4" type="video/mp4" />
+          <source src="clip_melissa_2.mp4" type="video/mp4" />
         </video>
         
         <video id="video2" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
@@ -80,6 +84,22 @@
           <source src="clip_mirthe_1.mp4" type="video/mp4" />
         </video>
 
+        <video id="video4" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip_mirthe_2.mp4" type="video/mp4" />
+        </video>
+
+        <video id="video5" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip_mirthe_3.mp4" type="video/mp4" />
+        </video>
+
+        <video id="video6" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip_murat.mp4" type="video/mp4" />
+        </video>
+
+        <video id="video7" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous">
+          <source src="clip_appie.mp4" type="video/mp4" />
+        </video>
+
         <!-- Frame images for video borders -->
         <img id="frame1" src="Asset16_frame.png" crossorigin="anonymous">
         <img id="frame2" src="Asset16_frame.png" crossorigin="anonymous">
@@ -87,7 +107,7 @@
       </a-assets>
 
       <!-- Marker 1 Melissa --------------------------------------------------------------------------------------------------------------------------->
-      <a-marker type="pattern" url="Marker1.patt"
+      <a-marker id="marker1" type="pattern" url="Marker1.patt"
       
       smooth="true" 
       smoothCount="10" 
@@ -100,7 +120,7 @@
           <a-video 
             src="#video1" 
             id="videoPlane1"
-            width="1.05" 
+            width="1.05"
             height="0.5726"
             position="0 0 0.02"
             material="shader: flat; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
@@ -117,7 +137,7 @@
         </a-entity>
 
         <!-- Video container 2 -->
-        <a-entity id="videoContainer2" position="-1.5 0.4 0" rotation="-90 0 0" scale="0 0 0">
+        <a-entity id="videoContainer2" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
           <!-- Video 2 -->
           <a-video 
             src="#video2"
@@ -140,7 +160,7 @@
         
         <!-- Model Background -->
         <a-entity
-          id="backgroundModel"
+          id="backgroundModel1"
           scale="0.6 0.6 0.6"
           animation-mixer="loop: repeat"
           gltf-model="#model_background"
@@ -151,7 +171,7 @@
 
         <!-- Model  -->
         <a-entity
-          id="model_01_Melissa"
+          id="model_melissa"
           scale="0.6 0.6 0.6"
           animation-mixer="loop: repeat"
           gltf-model="#model_01"
@@ -164,7 +184,7 @@
 
 
       <!-- Marker 2 Mirthe Janus --------------------------------------------------------------------------------------------------------------------------->
-      <a-marker type="pattern" url="Marker2.patt"
+      <a-marker id="marker2" type="pattern" url="Marker2.patt"
       
       smooth="true" 
       smoothCount="10" 
@@ -172,19 +192,19 @@
       smoothThreshold="2">
       
 
-        <!-- Video container 2 -->
-        <a-entity id="videoContainer2" position="-1.5 0.4 0" rotation="-90 0 0" scale="0 0 0">
-          <!-- Video 2 -->
+        <!-- Video container 3 -->
+        <a-entity id="videoContainer3" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 3 -->
           <a-video 
-            src="#video"
-            id="videoPlane2"
+            src="#video3"
+            id="videoPlane3"
             width="1.05" 
             height="0.5726"
             position="0 0 0"
             material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
           </a-video>
           
-          <!-- Frame/Border for Video 2 -->
+          <!-- Frame/Border for Video 3 -->
           <a-image 
             src="#frame2" 
             width="1.15" 
@@ -196,7 +216,7 @@
         
         <!-- Model Background -->
         <a-entity
-          id="backgroundModel"
+          id="backgroundModel2"
           scale="0.6 0.6 0.6"
           animation-mixer="loop: repeat"
           gltf-model="#model_background"
@@ -207,10 +227,222 @@
 
         <!-- Model  -->
         <a-entity
-          id="model_01_Mirthe"
+          id="model_mirthe"
           scale="0.6 0.6 0.6"
           animation-mixer="loop: repeat"
           gltf-model="#model_02"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+      </a-marker>
+      
+      <!-- Marker 3 --------------------------------------------------------------------------------------------------------------------------->
+      <a-marker id="marker3" type="pattern" url="Marker3.patt"
+      
+      smooth="true" 
+      smoothCount="10" 
+      smoothTolerance="0.01" 
+      smoothThreshold="2">
+      
+        <!-- Video container 4 -->
+        <a-entity id="videoContainer4" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 4 -->
+          <a-video 
+            src="#video4"
+            id="videoPlane4"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0"
+            material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 4 -->
+          <a-image 
+            src="#frame2" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0.02" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
+        
+        <!-- Model Background -->
+        <a-entity
+          id="backgroundModel3"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_background"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+
+        <!-- Model  -->
+        <a-entity
+          id="model3"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_03"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+      </a-marker>
+      
+      <!-- Marker 4 --------------------------------------------------------------------------------------------------------------------------->
+      <a-marker id="marker4" type="pattern" url="Marker4.patt"
+      
+      smooth="true" 
+      smoothCount="10" 
+      smoothTolerance="0.01" 
+      smoothThreshold="2">
+      
+        <!-- Video container 5 -->
+        <a-entity id="videoContainer5" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 5 -->
+          <a-video 
+            src="#video5"
+            id="videoPlane5"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0"
+            material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 5 -->
+          <a-image 
+            src="#frame2" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0.02" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
+        
+        <!-- Model Background -->
+        <a-entity
+          id="backgroundModel4"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_background"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+
+        <!-- Model  -->
+        <a-entity
+          id="model4"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_04"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+      </a-marker>
+      
+      <!-- Marker 5 --------------------------------------------------------------------------------------------------------------------------->
+      <a-marker id="marker5" type="pattern" url="Marker5.patt"
+      
+      smooth="true" 
+      smoothCount="10" 
+      smoothTolerance="0.01" 
+      smoothThreshold="2">
+      
+        <!-- Video container 6 -->
+        <a-entity id="videoContainer6" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 6 -->
+          <a-video 
+            src="#video6"
+            id="videoPlane6"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0"
+            material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 6 -->
+          <a-image 
+            src="#frame2" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0.02" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
+        
+        <!-- Model Background -->
+        <a-entity
+          id="backgroundModel5"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_background"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+
+        <!-- Model  -->
+        <a-entity
+          id="model5"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_05"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+      </a-marker>
+      
+      <!-- Marker 6 --------------------------------------------------------------------------------------------------------------------------->
+      <a-marker id="marker6" type="pattern" url="Marker6.patt"
+      
+      smooth="true" 
+      smoothCount="10" 
+      smoothTolerance="0.01" 
+      smoothThreshold="2">
+      
+        <!-- Video container 7 -->
+        <a-entity id="videoContainer7" position="-1.5 0.5 0" rotation="-90 0 0" scale="0 0 0">
+          <!-- Video 7 -->
+          <a-video 
+            src="#video7"
+            id="videoPlane7"
+            width="1.05" 
+            height="0.5726"
+            position="0 0 0"
+            material="shader: flat; true; depthTest: true; alphaTest: 0.01; opacity: 1; transparent: true;">
+          </a-video>
+          
+          <!-- Frame/Border for Video 7 -->
+          <a-image 
+            src="#frame2" 
+            width="1.15" 
+            height="0.6226"
+            position="0 0 0.02" 
+            material="transparent: true; alphaTest: 0.4; opacity: 1; depthTest: true;">
+          </a-image>
+        </a-entity>
+        
+        <!-- Model Background -->
+        <a-entity
+          id="backgroundModel6"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_background"
+          position="0 0 0"
+          rotation="0 0 0"
+          material="shader: flat; transparent: true; depthWrite: true;">
+        </a-entity>
+
+        <!-- Model  -->
+        <a-entity
+          id="model6"
+          scale="0.6 0.6 0.6"
+          animation-mixer="loop: repeat"
+          gltf-model="#model_06"
           position="0 0 0"
           rotation="0 0 0"
           material="shader: flat; transparent: true; depthWrite: true;">
@@ -227,22 +459,54 @@
 
     <script>
       // Get DOM elements
-
-      const backgroundModel = document.querySelector("#backgroundModel");
-      const model_01_Melissa = document.querySelector("#model_01_Melissa");
-
       const welcomeScreen = document.getElementById('welcomeScreen');
       const startButton = document.getElementById('startButton');
       const arScene = document.getElementById('arScene');
       const debugInfo = document.getElementById('debugInfo');
+      
+      // Get video elements
       const video1 = document.querySelector("#video1");
       const video2 = document.querySelector("#video2");
+      const video3 = document.querySelector("#video3");
+      const video4 = document.querySelector("#video4");
+      const video5 = document.querySelector("#video5");
+      const video6 = document.querySelector("#video6");
+      const video7 = document.querySelector("#video7");
+      
+      // Get video containers
       const videoContainer1 = document.querySelector("#videoContainer1");
       const videoContainer2 = document.querySelector("#videoContainer2");
-      const marker = document.querySelector("a-marker");
+      const videoContainer3 = document.querySelector("#videoContainer3");
+      const videoContainer4 = document.querySelector("#videoContainer4");
+      const videoContainer5 = document.querySelector("#videoContainer5");
+      const videoContainer6 = document.querySelector("#videoContainer6");
+      const videoContainer7 = document.querySelector("#videoContainer7");
+      
+      // Get markers
+      const marker1 = document.querySelector("#marker1");
+      const marker2 = document.querySelector("#marker2");
+      const marker3 = document.querySelector("#marker3");
+      const marker4 = document.querySelector("#marker4");
+      const marker5 = document.querySelector("#marker5");
+      const marker6 = document.querySelector("#marker6");
+      
+      // Get models - fixed ID references
+      const backgroundModel1 = document.querySelector("#backgroundModel1");
+      const backgroundModel2 = document.querySelector("#backgroundModel2");
+      const backgroundModel3 = document.querySelector("#backgroundModel3");
+      const backgroundModel4 = document.querySelector("#backgroundModel4");
+      const backgroundModel5 = document.querySelector("#backgroundModel5");
+      const backgroundModel6 = document.querySelector("#backgroundModel6");
+      const model_melissa = document.querySelector("#model_melissa");
+      const model_mirthe = document.querySelector("#model_mirthe");
+      const model3 = document.querySelector("#model3");
+      const model4 = document.querySelector("#model4");
+      const model5 = document.querySelector("#model5");
+      const model6 = document.querySelector("#model6");
 
-      let playTimeout1, playTimeout2;
-      let stopTimeout1, stopTimeout2;
+      // Timeouts
+      let playTimeout1, playTimeout2, playTimeout3, playTimeout4, playTimeout5, playTimeout6, playTimeout7;
+      let stopTimeout1, stopTimeout2, stopTimeout3, stopTimeout4, stopTimeout5, stopTimeout6, stopTimeout7;
       let videosInitialized = false;
       
       // Debug function - only display in console
@@ -274,6 +538,11 @@
         try {
           video1.load();
           video2.load();
+          video3.load();
+          video4.load();
+          video5.load();
+          video6.load();
+          video7.load();
         } catch (e) {
           debug('Error loading videos: ' + e.message);
         }
@@ -281,7 +550,12 @@
         // Try to play and immediately pause to satisfy user interaction requirement
         Promise.all([
           video1.play().then(() => video1.pause()).catch(e => debug('Video 1 init failed: ' + e.message)),
-          video2.play().then(() => video2.pause()).catch(e => debug('Video 2 init failed: ' + e.message))
+          video2.play().then(() => video2.pause()).catch(e => debug('Video 2 init failed: ' + e.message)),
+          video3.play().then(() => video3.pause()).catch(e => debug('Video 3 init failed: ' + e.message)),
+          video4.play().then(() => video4.pause()).catch(e => debug('Video 4 init failed: ' + e.message)),
+          video5.play().then(() => video5.pause()).catch(e => debug('Video 5 init failed: ' + e.message)),
+          video6.play().then(() => video6.pause()).catch(e => debug('Video 6 init failed: ' + e.message)),
+          video7.play().then(() => video7.pause()).catch(e => debug('Video 7 init failed: ' + e.message))
         ]).then(() => {
           videosInitialized = true;
           debug('Videos successfully initialized');
@@ -361,133 +635,327 @@
           });
       }
 
-       // Reset models animation by recreating the animation-mixer component
-       function resetModelAnimations() {
+      function playVideo3() {
+        debug('Attempting to play video 3');
+        
+        video3.play()
+          .then(() => {
+            debug('Video 3 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer3, 1000);
+            
+            // Stop video3 after 40 seconds of playing
+            stopTimeout3 = setTimeout(() => {
+              video3.pause();
+              videoContainer3.setAttribute('scale', '0 0 0');
+              video3.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 3: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer3, 1000);
+          });
+      }
+      
+      function playVideo4() {
+        debug('Attempting to play video 4');
+        
+        video4.play()
+          .then(() => {
+            debug('Video 4 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer4, 1000);
+            
+            // Stop video4 after 40 seconds of playing
+            stopTimeout4 = setTimeout(() => {
+              video4.pause();
+              videoContainer4.setAttribute('scale', '0 0 0');
+              video4.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 4: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer4, 1000);
+          });
+      }
+      
+      function playVideo5() {
+        debug('Attempting to play video 5');
+        
+        video5.play()
+          .then(() => {
+            debug('Video 5 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer5, 1000);
+            
+            // Stop video5 after 40 seconds of playing
+            stopTimeout5 = setTimeout(() => {
+              video5.pause();
+              videoContainer5.setAttribute('scale', '0 0 0');
+              video5.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 5: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer5, 1000);
+          });
+      }
+      
+      function playVideo6() {
+        debug('Attempting to play video 6');
+        
+        video6.play()
+          .then(() => {
+            debug('Video 6 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer6, 1000);
+            
+            // Stop video6 after 40 seconds of playing
+            stopTimeout6 = setTimeout(() => {
+              video6.pause();
+              videoContainer6.setAttribute('scale', '0 0 0');
+              video6.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 6: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer6, 1000);
+          });
+      }
+      
+      function playVideo7() {
+        debug('Attempting to play video 7');
+        
+        video7.play()
+          .then(() => {
+            debug('Video 7 playing');
+            // Animate scale from 0 to 1 over 1 second
+            animateScale(videoContainer7, 1000);
+            
+            // Stop video7 after 40 seconds of playing
+            stopTimeout7 = setTimeout(() => {
+              video7.pause();
+              videoContainer7.setAttribute('scale', '0 0 0');
+              video7.currentTime = 0;
+            }, 40000);
+          })
+          .catch(error => {
+            debug('Error playing video 7: ' + error.message);
+            // Show anyway as fallback
+            animateScale(videoContainer7, 1000);
+          });
+      }
+
+      // Reset model animations function - updated to handle both markers
+      function resetModelAnimations(models) {
         debug('Resetting model animations');
         
-        try {
-          // Force animation restart by changing the models' animation data
-          if (backgroundModel) {
-            // Get the 3D model's animation component
-            const mixer = backgroundModel.components["animation-mixer"];
-            if (mixer && mixer.mixer) {
-              // Access the THREE.js animation mixer directly if possible
-              mixer.mixer.stopAllAction();
-              mixer.mixer.update(0);
-              // Force the component to re-initialize
-              backgroundModel.removeAttribute('animation-mixer');
-              backgroundModel.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-              debug('Background model animation reset');
-            } else {
-              // Fallback for when direct mixer access fails
-              backgroundModel.removeAttribute('animation-mixer');
-              setTimeout(() => {
-                backgroundModel.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-                debug('Background model animation reset (fallback)');
-              }, 50);
+        models.forEach(model => {
+          try {
+            if (model) {
+              // Get the 3D model's animation component
+              const mixer = model.components["animation-mixer"];
+              if (mixer && mixer.mixer) {
+                // Access the THREE.js animation mixer directly if possible
+                mixer.mixer.stopAllAction();
+                mixer.mixer.update(0);
+                // Force the component to re-initialize
+                model.removeAttribute('animation-mixer');
+                model.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+                debug('Model animation reset: ' + model.id);
+              } else {
+                // Fallback for when direct mixer access fails
+                model.removeAttribute('animation-mixer');
+                setTimeout(() => {
+                  model.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
+                  debug('Model animation reset (fallback): ' + model.id);
+                }, 50);
+              }
             }
+          } catch (e) {
+            debug('Error resetting model animations: ' + e.message);
           }
-          
-          if (model_01_Melissa) {
-            // Get the 3D model's animation component
-            const mixer = model_01_Melissa.components["animation-mixer"];
-            if (mixer && mixer.mixer) {
-              // Access the THREE.js animation mixer directly if possible
-              mixer.mixer.stopAllAction();
-              mixer.mixer.update(0);
-              // Force the component to re-initialize
-              model_01_Melissa.removeAttribute('animation-mixer');
-              model_01_Melissa.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-              debug('Main model animation reset');
-            } else {
-              // Fallback for when direct mixer access fails
-              model_01_Melissa.removeAttribute('animation-mixer');
-              setTimeout(() => {
-                model_01_Melissa.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-                debug('Main model animation reset (fallback)');
-              }, 50);
-            }
-          }
-
-          if (model_01_Mirthe_1) {
-            // Get the 3D model's animation component
-            const mixer = model_01_Melissa.components["animation-mixer"];
-            if (mixer && mixer.mixer) {
-              // Access the THREE.js animation mixer directly if possible
-              mixer.mixer.stopAllAction();
-              mixer.mixer.update(0);
-              // Force the component to re-initialize
-              model_01_Mirthe_1.removeAttribute('animation-mixer');
-              model_01_Mirthe_1.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-              debug('Main model animation reset');
-            } else {
-              // Fallback for when direct mixer access fails
-              model_01_Mirthe_1.removeAttribute('animation-mixer');
-              setTimeout(() => {
-                model_01_Mirthe_1.setAttribute('animation-mixer', 'loop: repeat; clampWhenFinished: true;');
-                debug('Main model animation reset (fallback)');
-              }, 50);
-            }
-          }
-          
-        } catch (e) {
-          debug('Error resetting model animations: ' + e.message);
-        }
+        });
       }
       
-
       // Reset all videos and timers
-      function resetVideos() {
-        debug('Resetting videos');
-        
-        // Clear all timeouts
-        clearTimeout(playTimeout1);
-        clearTimeout(playTimeout2);
-        clearTimeout(stopTimeout1);
-        clearTimeout(stopTimeout2);
+function resetVideos() {
+  debug('Resetting videos');
+  
+  // Clear all timeouts
+  clearTimeout(playTimeout1);
+  clearTimeout(playTimeout2);
+  clearTimeout(playTimeout3);
+  clearTimeout(playTimeout4);
+  clearTimeout(playTimeout5);
+  clearTimeout(playTimeout6);
+  clearTimeout(playTimeout7);
+  clearTimeout(stopTimeout1);
+  clearTimeout(stopTimeout2);
+  clearTimeout(stopTimeout3);
+  clearTimeout(stopTimeout4);
+  clearTimeout(stopTimeout5);
+  clearTimeout(stopTimeout6);
+  clearTimeout(stopTimeout7);
 
-        // Reset video containers to minimum scale
-        videoContainer1.setAttribute('scale', '0 0 0');
-        videoContainer2.setAttribute('scale', '0 0 0');
+  // Reset video containers to minimum scale
+  videoContainer1.setAttribute('scale', '0 0 0');
+  videoContainer2.setAttribute('scale', '0 0 0');
+  videoContainer3.setAttribute('scale', '0 0 0');
+  videoContainer4.setAttribute('scale', '0 0 0');
+  videoContainer5.setAttribute('scale', '0 0 0');
+  videoContainer6.setAttribute('scale', '0 0 0');
+  videoContainer7.setAttribute('scale', '0 0 0');
 
-        // Reset videos
-        try {
-          video1.pause();
-          video2.pause();
-          video1.currentTime = 0;
-          video2.currentTime = 0;
-        } catch (e) {
-          debug('Error in reset: ' + e.message);
-        }
-      }
+  // Reset videos
+  try {
+    video1.pause();
+    video2.pause();
+    video3.pause();
+    video4.pause();
+    video5.pause();
+    video6.pause();
+    video7.pause();
+    video1.currentTime = 0;
+    video2.currentTime = 0;
+    video3.currentTime = 0;
+    video4.currentTime = 0;
+    video5.currentTime = 0;
+    video6.currentTime = 0;
+    video7.currentTime = 0;
+  } catch (e) {
+    debug('Error in reset: ' + e.message);
+  }
+}
 
-      marker.addEventListener("markerFound", () => {
-        debug('Marker found');
-        
-        resetModelAnimations();
+// Set up marker 1 events (Melissa)
+marker1.addEventListener("markerFound", () => {
+  debug('Marker 1 found');
+  
+  // Reset marker 1 models
+  resetModelAnimations([backgroundModel1, model_melissa]);
 
-        // Reset everything first to handle reconnection properly
-        resetVideos();
-        
-        // Delay video1 by 5 seconds
-        playTimeout1 = setTimeout(playVideo1, 5000);
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Delay video1 by 5 seconds
+  playTimeout1 = setTimeout(playVideo1, 5000);
 
-        // Delay video2 by 2 seconds
-        playTimeout2 = setTimeout(playVideo2, 2000);
-      });
+  // Delay video2 by 2 seconds
+  playTimeout2 = setTimeout(playVideo2, 2000);
+});
 
-      marker.addEventListener("markerLost", () => {
-        debug('Marker lost');
-        resetVideos();
-      });
-      
-      // Extra event to help with iOS video playback
-      document.addEventListener('touchstart', function() {
-        if (!videosInitialized) {
-          debug('Touch event - trying to initialize videos again');
-          initializeVideos();
-        }
-      }, {once: true});
+marker1.addEventListener("markerLost", () => {
+  debug('Marker 1 lost');
+  resetVideos();
+});
+
+// Set up marker 2 events (Mirthe)
+marker2.addEventListener("markerFound", () => {
+  debug('Marker 2 found');
+  
+  // Reset marker 2 models
+  resetModelAnimations([backgroundModel2, model_mirthe]);
+
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Play video 3 for marker 2
+  playTimeout3 = setTimeout(playVideo3, 2000);
+});
+
+marker2.addEventListener("markerLost", () => {
+  debug('Marker 2 lost');
+  resetVideos();
+});
+
+// Set up marker 3 events
+marker3.addEventListener("markerFound", () => {
+  debug('Marker 3 found');
+  
+  // Reset marker 3 models
+  resetModelAnimations([backgroundModel3, model3]);
+
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Play video 4 for marker 3
+  playTimeout4 = setTimeout(playVideo4, 2000);
+});
+
+marker3.addEventListener("markerLost", () => {
+  debug('Marker 3 lost');
+  resetVideos();
+});
+
+// Set up marker 4 events
+marker4.addEventListener("markerFound", () => {
+  debug('Marker 4 found');
+  
+  // Reset marker 4 models
+  resetModelAnimations([backgroundModel4, model4]);
+
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Play video 5 for marker 4
+  playTimeout5 = setTimeout(playVideo5, 2000);
+});
+
+marker4.addEventListener("markerLost", () => {
+  debug('Marker 4 lost');
+  resetVideos();
+});
+
+// Set up marker 5 events
+marker5.addEventListener("markerFound", () => {
+  debug('Marker 5 found');
+  
+  // Reset marker 5 models
+  resetModelAnimations([backgroundModel5, model5]);
+
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Play video 6 for marker 5
+  playTimeout6 = setTimeout(playVideo6, 2000);
+});
+
+marker5.addEventListener("markerLost", () => {
+  debug('Marker 5 lost');
+  resetVideos();
+});
+
+// Set up marker 6 events
+marker6.addEventListener("markerFound", () => {
+  debug('Marker 6 found');
+  
+  // Reset marker 6 models
+  resetModelAnimations([backgroundModel6, model6]);
+
+  // Reset everything first to handle reconnection properly
+  resetVideos();
+  
+  // Play video 7 for marker 6
+  playTimeout7 = setTimeout(playVideo7, 2000);
+});
+
+marker6.addEventListener("markerLost", () => {
+  debug('Marker 6 lost');
+  resetVideos();
+});
+
+// Extra event to help with iOS video playback
+document.addEventListener('touchstart', function() {
+  if (!videosInitialized) {
+    debug('Touch event - trying to initialize videos again');
+    initializeVideos();
+  }
+}, {once: true});
     </script>
   </body>
 </html>
